@@ -3,6 +3,7 @@
  *
  * @author Rob Loach (@RobLoach)
  * @license MIT
+ * @website https://github.com/RobLoach/wren-assert
  */
 class Assert {
   /**
@@ -105,7 +106,7 @@ class Assert {
     var fiber = Fiber.new(fn)
     fiber.try()
     if (fiber.error) {
-      Fiber.abort("The function aborted, when it was expected not to: " + fiber.error)
+      Fiber.abort("The function aborted unexpectedly: " + fiber.error)
     }
   }
 
@@ -124,7 +125,7 @@ class Assert {
    * Assert that the given object matches the given type.
    */
   static typeOf(object, type) {
-    typeOf(object, type, "Expected %(object) to be of type %(type).")
+    typeOf(object, type, "Expected %(object) to be of type %(type)")
   }
 
   /**

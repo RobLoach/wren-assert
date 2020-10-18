@@ -37,8 +37,12 @@ Assert.countOf([1, 2, 3], 3, "Expected the length of the list to be 3.")
 The follow are the methods defined in the Assert module.
 
 ### `Assert.equal(actual, expected, [message])`
+### `Assert[actual, expected, [message]]`
+Alias of `Assert.equal()`.
 ### `Assert.notEqual(actual, expected, [message])`
 ### `Assert.ok(value, [message])`
+### `Assert[value]`
+Alias of `Assert.ok()`
 ### `Assert.aborts(fn, [message])`
 ### `Assert.doesNotAbort(fn, [message])`
 ### `Assert.typeOf(object, type, [message])`
