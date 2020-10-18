@@ -29,7 +29,7 @@ Assert.doesNotAbort(Fn.new {
 Assert.typeOf(5, Num)
 Assert.typeOf(5, Num, "Expected the number to be a Num.")
 Assert.countOf([1, 2, 3], 3)
-Assert.countOf([1, 2, 3], 3, "Expected the length of the list to be 3.")
+Assert.countOf([1, 2, 3], 3, "Expect a list count of 3.")
 ```
 
 ## API
