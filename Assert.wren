@@ -132,9 +132,7 @@ class Assert {
    * Assert that the given object matches the given type, with a message.
    */
   static typeOf(object, type, message) {
-    if (object is type) {
-      // TODO: Find out if there's an "is not" operator.
-    } else {
+    if (!(object is type)) {
       Fiber.abort(message)
     }
   }
