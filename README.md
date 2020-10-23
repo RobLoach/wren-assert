@@ -8,26 +8,32 @@ Copy [`Assert.wren`](Assert.wren) and [`LICENSE`](LICENSE) to your project.
 
 ## Usage
 
-```
+``` js
 import "./Assert" for Assert
 
-Assert[5, 5]
 Assert.equal(5, 5)
-Assert[5, 5, "Expected 5 to equal 5"]
+Assert[5, 5]
 Assert.equal(5, 5, "Expected 5 to equal 5")
+Assert[5, 5, "Expected 5 to equal 5"]
+
 Assert.notEqual(5, 10)
 Assert.notEqual(5, 10, "Expected 5 to not equal 10")
-Assert[true]
+
 Assert.ok(true)
+Assert[true]
 Assert.ok(true, "True should be ok")
+
 Assert.aborts(Fn.new {
   Fiber.abort("This function is expected to abort.")
 })
+
 Assert.doesNotAbort(Fn.new {
   System.print("This function does not abort, as expected.")
 })
+
 Assert.typeOf(5, Num)
 Assert.typeOf(5, Num, "Expected the number to be a Num.")
+
 Assert.countOf([1, 2, 3], 3)
 Assert.countOf([1, 2, 3], 3, "Expect a list count of 3.")
 ```
