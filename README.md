@@ -15,29 +15,41 @@ The `Assert` class is inspired by [Node.js's `assert` module](https://nodejs.org
 ``` js
 import "./Assert" for Assert
 
-Assert[5, 5]
-Assert[5, 5, "Expected 5 to equal 5"]
 Assert.equal(5, 5)
 Assert.equal(5, 5, "Expected 5 to equal 5")
+Assert[5, 5]
+Assert[5, 5, "Expected 5 to equal 5"]
+
 Assert.notEqual(5, 10)
 Assert.notEqual(5, 10, "Expected 5 to not equal 10")
+
 Assert.ok(true)
 Assert.ok(true, "True should be ok")
 Assert[true]
+
 Assert.aborts(Fn.new {
   Fiber.abort("This function is expected to abort.")
 })
+
 Assert.doesNotAbort(Fn.new {
   System.print("This function does not abort, as expected.")
 })
+
 Assert.typeOf(5, Num)
 Assert.typeOf(5, Num, "Expected the number to be a Num.")
+
 Assert.countOf([1, 2, 3], 3)
 Assert.countOf([1, 2, 3], 3, "Expect a list count of 3.")
+
 Assert.deepEqual([1, 2, 3], [1, 2, 3])
 Assert.deepEqual([1, 2, 3], [1, 2, 3], "Expected the two lists to be the same.")
+
+Assert.exists(5)
 Assert.exists(5, "Expected 5 to not be null")
+
+Assert.notExists(null)
 Assert.notExists(null, "Expected null to be null")
+
 Assert.contains([1, 2, 3], 2)
 Assert.contains([1, 2, 3], 2, "Expected two to be in the sequence")
 ```
