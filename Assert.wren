@@ -52,7 +52,7 @@ class Assert {
    */
   static notEqual(actual, expected, message) {
     if (actual == expected) {
-      Fiber.abort(message)
+      fail(message)
     }
   }
 
@@ -68,7 +68,7 @@ class Assert {
    */
   static ok(value, message) {
     if (!value) {
-      Fiber.abort(message)
+      fail(message)
     }
   }
 
@@ -95,7 +95,7 @@ class Assert {
     var fiber = Fiber.new(fn)
     fiber.try()
     if (!fiber.error) {
-      Fiber.abort(message)
+      fail(message)
     }
   }
 
@@ -106,7 +106,7 @@ class Assert {
     var fiber = Fiber.new(fn)
     fiber.try()
     if (fiber.error) {
-      Fiber.abort("The function aborted unexpectedly: " + fiber.error)
+      fail("Expected the function to not abort: " + fiber.error)
     }
   }
 
@@ -117,7 +117,7 @@ class Assert {
     var fiber = Fiber.new(fn)
     fiber.try()
     if (fiber.error) {
-      Fiber.abort(message)
+      fail(message)
     }
   }
 
@@ -133,7 +133,7 @@ class Assert {
    */
   static typeOf(object, type, message) {
     if (!(object is type)) {
-      Fiber.abort(message)
+      fail(message)
     }
   }
 
@@ -149,5 +149,99 @@ class Assert {
    */
   static countOf(list, count, message) {
     equal(list.count, count, message)
+  }
+
+  /**
+   * Asserts that the two given objects, and their children, are equal, with a message.
+   */
+  static deepEqual(actual, expected, message) {
+    if (actual is Sequence && expected is Sequence) {
+      if (actual.count != expected.count) {
+        fail(message)
+      }
+      for (i in 0..actual.count - 1) {
+        deepEqual(actual[i], expected[i], message)
+      }
+    } else {
+      equal(actual, expected, message)
+    }
+  }
+
+  /**
+   * Asserts that the two given objects, and their children, are equal.
+   */
+  static deepEqual(actual, expected) {
+    deepEqual(actual, expected, "Expected the given sequences are deepEqual")
+  }
+
+  /**
+   * Asserts that the given value is not null.
+   */
+  static exists(value, message) {
+    notEqual(value, null, message)
+  }
+
+  /**
+   * Asserts that the given value is not null.
+   */
+  static exists(value) {
+    notEqual(value, null, "Expected the given value to not be null")
+  }
+
+  /**
+   * Asserts that the given value is null.
+   */
+  static notExists(value, message) {
+    equal(value, null, message)
+  }
+
+  /**
+   * Asserts that the given value is null.
+   */
+  static notExists(value) {
+    notExists(value, "Expected the given value to be null")
+  }
+
+  /**
+   * Asserts that the given sequence haystack contains the given needle value.
+   */
+  static contains(haystack, needle, message) {
+    if (haystack is Sequence) {
+      ok(haystack.contains(needle), message)
+    } else {
+      equal(haystack, needle, message)
+    }
+  }
+
+  static contains(haystack, needle) {
+    contains(haystack, needle, "The given haystack sequence does not contain the value %(needle)")
+  }
+
+  /**
+   * Throws an abort on the current fiber with the given message.
+   */
+  static fail(message) {
+    Fiber.abort(message)
+  }
+
+  /**
+   * Throws an abort on the current fiber.
+   */
+  static fail() {
+    fail("There was a failed assertion.")
+  }
+
+  /**
+   * Throws an abort on the current fiber, using a built message.
+   */
+  static fail(actual, expected, operator) {
+    fail("Expected that %(actual) %(operator) %(expected)")
+  }
+
+  /**
+   * Throws an assert on the given fiber, assuming an equal operator.
+   */
+  static fail(actual, expected) {
+    fail(actual, expected, "==")
   }
 }

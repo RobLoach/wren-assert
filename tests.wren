@@ -49,5 +49,45 @@ var list = [1, 2, 3]
 Assert.countOf(list, 3)
 Assert.countOf(list, 3, "Expected [1,2,3] to have a count of 3")
 
+// Assert.deepEqual
+var newList = [1, 2, 3]
+Assert.deepEqual(list, newList, "Expected [1,2,3] to deepEqual [1,2,3]")
+Assert.aborts(Fn.new {
+  newList = [1, 2, 3, 4]
+  Assert.deepEqual(list, newList)
+})
+
+// Assert.exists
+Assert.exists(3)
+Assert.exists(3, "Three is null, for some reason.")
+Assert.aborts(Fn.new {
+  Assert.exists(null)
+})
+
+// Assert.notExists
+Assert.notExists(null)
+Assert.notExists(null, "isNull is not null, for some reason.")
+Assert.aborts(Fn.new {
+  Assert.notExists(4)
+})
+
+// Assert.contains
+Assert.contains([1, 2, 3], 2)
+Assert.contains([1, 2, 3], 2, "The haystack has a 2")
+
+// Assert.fail
+Assert.aborts(Fn.new {
+  Assert.fail()
+})
+Assert.aborts(Fn.new {
+  Assert.fail("This function is expected to abort")
+})
+Assert.aborts(Fn.new {
+  Assert.fail(1, 2)
+})
+Assert.aborts(Fn.new {
+  Assert.fail(1, 2, "equal")
+})
+
 // Finish up
 System.print("Assert had no errors")
