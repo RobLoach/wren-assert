@@ -8,7 +8,7 @@ Copy [`Assert.wren`](Assert.wren) and [`LICENSE`](LICENSE) to your project.
 
 ## Usage
 
-The `Assert` class is inspired by [Node.js's `assert` module](https://nodejs.org/api/assert.html), so the methods are similar.
+The `Assert` class is inspired by [Node.js's `assert` module](https://nodejs.org/api/assert.html), so the methods are similar. When an assert fails, it will issue a [`Fiber.abort()`](https://wren.io/modules/core/fiber.html#fiber.abort(message)).
 
 ### Example
 
