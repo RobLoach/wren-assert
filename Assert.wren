@@ -18,7 +18,7 @@ class Assert {
    */
   static equal(actual, expected, message) {
     if (actual != expected) {
-      Fiber.abort(message)
+      fail(message)
     }
   }
 
@@ -221,7 +221,9 @@ class Assert {
    * Throws an abort on the current fiber with the given message.
    */
   static fail(message) {
-    Fiber.abort(message)
+    if (!__disabled) {
+      Fiber.abort(message)
+    }
   }
 
   /**
@@ -244,4 +246,13 @@ class Assert {
   static fail(actual, expected) {
     fail(actual, expected, "==")
   }
+
+  /**
+   * Gets whether or not assertions should be skipped.
+   */
+  static disabled { __disabled }
+  /**
+   * Set `Assert.disabled = true` to have assertions skip avoid throwing Fiber.aborts().
+   */
+  static disabled=(value) { __disabled = value}
 }

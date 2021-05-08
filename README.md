@@ -52,6 +52,8 @@ Assert.notExists(null, "Expected null to be null")
 
 Assert.contains([1, 2, 3], 2)
 Assert.contains([1, 2, 3], 2, "Expected two to be in the sequence")
+
+Assert.disabled = true // Disables assertion checks
 ```
 
 ### API
@@ -70,6 +72,7 @@ Assert.deepEqual(actual, expected, [message])
 Assert.exists(value, [message])
 Assert.notExists(value, [message])
 Assert.contains(haystack, needle, [message])
+Assert.disabled = true // Disables assertion checks
 ```
 
 ## Development

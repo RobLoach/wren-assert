@@ -89,5 +89,11 @@ Assert.aborts(Fn.new {
   Assert.fail(1, 2, "equal")
 })
 
+// Assert.disabled
+Assert.disabled = true
+Assert.fail("Since assertions are now disabled, this should skip")
+Assert[1, 3]
+Assert.typeOf(3, String)
+
 // Finish up
 System.print("Assert had no errors")
