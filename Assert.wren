@@ -155,7 +155,9 @@ class Assert {
    * Asserts that the two given objects, and their children, are equal, with a message.
    */
   static deepEqual(actual, expected, message) {
-    if (actual is Sequence && expected is Sequence) {
+    if (actual is String && expected is String) {
+      equal(actual, expected, message)
+    } else if (actual is Sequence && expected is Sequence) {
       if (actual.count != expected.count) {
         fail(message)
       }
