@@ -1,6 +1,6 @@
 # wren-assert
 
-Assertion library for unit testing in [Wren](https://wren.io).
+Minimalistic assertion library for unit testing in [Wren](https://wren.io).
 
 ## Installation
 
