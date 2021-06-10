@@ -38,6 +38,9 @@ Assert.doesNotAbort(Fn.new {
 Assert.typeOf(5, Num)
 Assert.typeOf(5, Num, "Expected the number to be a Num.")
 
+Assert.notTypeOf("Hello World!", Num)
+Assert.notTypeOf("Hello World!", Num, "Expected the String to not be a Num.")
+
 Assert.countOf([1, 2, 3], 3)
 Assert.countOf([1, 2, 3], 3, "Expect a list count of 3.")
 
@@ -61,12 +64,14 @@ Assert.disabled = true // Disables assertion checks
 ``` js
 Assert.equal(actual, expected, [message])
 Assert[actual, expected, [message]]
+Assert.notEqual(actual, expected, [message])
 Assert.ok(value, [message])
 Assert[value]
-Assert.notEqual(actual, expected, [message])
+Assert.notOk(value, [message])
 Assert.aborts(fn, [message])
 Assert.doesNotAbort(fn, [message])
 Assert.typeOf(object, type, [message])
+Assert.notTypeOf(object, type, [message])
 Assert.countOf(list, count, [message])
 Assert.deepEqual(actual, expected, [message])
 Assert.exists(value, [message])

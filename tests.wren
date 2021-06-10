@@ -21,6 +21,10 @@ Assert.notEqual(5, 10, "5 is somehow equal to 10")
 Assert.ok(true)
 Assert.ok(true, "This should be okay")
 
+// Assert.notOk
+Assert.notOk(false)
+Assert.notOk(false, "This should not be okay")
+
 // Assert[value]
 Assert[true]
 Assert.aborts(Fn.new { Assert[false] })
@@ -43,6 +47,11 @@ Assert.doesNotAbort(functionThatDoesNotAbort, "The function aborted, when it sho
 Assert.typeOf(5, Num)
 Assert.typeOf(5, Num, "Expected the number to be a number.")
 Assert.typeOf("Hello World!", String)
+
+// Assert.notTypeOf
+Assert.notTypeOf(5, String)
+Assert.notTypeOf(5, String, "Expected the number to not be a string.")
+Assert.notTypeOf("Hello World!", Num)
 
 // Assert.countOf
 var list = [1, 2, 3]

@@ -1,5 +1,5 @@
 /**
- * Assertion library for unit testing in Wren.
+ * Minimalist assertion library for unit testing in Wren.
  *
  * @author Rob Loach (@RobLoach)
  * @license MIT
@@ -57,17 +57,35 @@ class Assert {
   }
 
   /**
-   * Assert that the given value results as a true condition.
+   * Assert that the given value is truthy.
    */
   static ok(value) {
     ok(value, "Expected input to be ok: %(value)")
   }
 
   /**
-   * Assert that the given value results as a true condition, with a given message.
+   * Assert that the given value is truthy, with a given message.
    */
   static ok(value, message) {
-    if (!value) {
+    if (value) {
+      // Nothing.
+    } else {
+      fail(message)
+    }
+  }
+
+  /**
+   * Assert that the given value is falsey.
+   */
+  static notOk(value) {
+    notOk(value, "Expected input to be ok: %(value)")
+  }
+
+  /**
+   * Assert that the given value is falsey, with a given message.
+   */
+  static notOk(value, message) {
+    if (value) {
       fail(message)
     }
   }
@@ -85,7 +103,7 @@ class Assert {
    * Assert that the given function aborts.
    */
   static aborts(fn) {
-    aborts(fn, "Expected function to abort.")
+    aborts(fn, "Expected function to abort")
   }
 
   /**
@@ -133,6 +151,22 @@ class Assert {
    */
   static typeOf(object, type, message) {
     if (!(object is type)) {
+      fail(message)
+    }
+  }
+
+  /**
+   * Assert that the given object doesn't match the given type.
+   */
+  static notTypeOf(object, type) {
+    notTypeOf(object, type, "Expected %(object) to not be of type %(type)")
+  }
+
+  /**
+   * Assert that the given object doesn't match the given type, with a message.
+   */
+  static notTypeOf(object, type, message) {
+    if (object is type) {
       fail(message)
     }
   }
@@ -232,7 +266,7 @@ class Assert {
    * Throws an abort on the current fiber.
    */
   static fail() {
-    fail("There was a failed assertion.")
+    fail("There was a failed assertion")
   }
 
   /**
@@ -253,6 +287,7 @@ class Assert {
    * Gets whether or not assertions should be skipped.
    */
   static disabled { __disabled }
+
   /**
    * Set `Assert.disabled = true` to have assertions skip avoid throwing Fiber.aborts().
    */
