@@ -24,8 +24,11 @@ Assert.notEqual(5, 10)
 Assert.notEqual(5, 10, "Expected 5 to not equal 10")
 
 Assert.ok(true)
-Assert.ok(true, "True should be ok")
+Assert.ok(true, "True should be truthy")
 Assert[true]
+
+Assert.notOk(false)
+Assert.notOk(false, "False should be falsey")
 
 Assert.aborts(Fn.new {
   Fiber.abort("This function is expected to abort.")
